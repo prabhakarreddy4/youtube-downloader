@@ -592,14 +592,19 @@ document.getElementById('download-btn').addEventListener('click', async function
         return;
     }
 
-    // Open reliable download services
-    const confirmed = confirm('Choose download service:\n\nOK = yt1s.com (Fast)\nCancel = savefrom.net (More options)');
+    // List of working services (randomly selected)
+    const services = [
+        `https://yt1s.com/en?q=https://www.youtube.com/watch?v=${videoId}`,
+        `https://en.savefrom.net/#url=https://www.youtube.com/watch?v=${videoId}`,
+        `https://ytmp3.cc/youtube-to-mp3/${videoId}`,
+        `https://y2mate.com/youtube/${videoId}`
+    ];
+
+    // Pick a random service
+    const randomService = services[Math.floor(Math.random() * services.length)];
     
-    if(confirmed) {
-        window.open(`https://yt1s.com/en?q=https://www.youtube.com/watch?v=${videoId}`, '_blank');
-    } else {
-        window.open(`https://en.savefrom.net/#url=https://www.youtube.com/watch?v=${videoId}`, '_blank');
-    }
+    // Open in the same tab
+    window.location.href = randomService;
 });
 
 // SEO Enhancement (DON'T TOUCH THIS PART)
